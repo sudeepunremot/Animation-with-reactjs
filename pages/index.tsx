@@ -1,72 +1,485 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from "next/link";
+
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin";
+gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(MotionPathPlugin)
+
+import TopSvg from "./TopSvg";
+import MiddleSvg from "./MiddleSvg";
+import NextSvgs from "./NextSvgs";
 
 const Home: NextPage = () => {
+const boxRef = useRef();
+  useEffect(() => {
+    let speed = 100;
+let circle_base = gsap.timeline( { paused:true, reversed:true });
+    ScrollTrigger.create({
+        animation: circle_base,
+        trigger: ".section-1",
+        start: "top top",
+        end: "200% top",
+        scrub: 3,
+        markers:false,
+        pin:true,
+    });
+
+  circle_base.from(".circle", {
+      scale: 5,
+      x:"100%",
+      transformOrigin:"center",
+      opacity:1,
+    }, 0)
+
+ circle_base.to(".laptop-1", {
+      x:0,
+      y:-30,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0)
+   circle_base.to(".laptop-2", {
+      x:0,
+      y:-30,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.1)
+   circle_base.to(".laptop-3", {
+      x:0,
+      y:-30,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.2)
+    circle_base.to(".cable", {
+      opacity:0,
+    }, 0.3)
+    
+     circle_base.to(".transfer", {
+      strokeDashoffset:200,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.4)
+     circle_base.to(".server-top", {
+      y:-50,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.5)
+    circle_base.to(".server-base", {
+      y:-50,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.6)
+   circle_base.to(".shadow", {
+      scale:0,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.6)
+    circle_base.to(".main-cloud", {
+      y:0,
+      transformOrigin:"center",
+      opacity:0,
+    }, 0.7) 
+ 
+  circle_base.to(".circles", {
+    scale:5,
+      transformOrigin:"center",
+      opacity:0,
+    duration:2,
+    }, 1)
+
+let chain = gsap.timeline({ paused:true, reversed:true });
+    ScrollTrigger.create({
+        animation: chain,
+        trigger: ".section-2",
+        start: "center center",
+        end: "200% center",
+        scrub: 1,
+        markers:false,
+        pin:true,
+    });
+
+  chain.from(".circle-grp", {
+    scale:5,
+    transformOrigin:"center",
+    opacity:0,
+    })
+  
+chain.to(".polygon-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },0)
+  
+chain.to(".Avalanche-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },0.56)
+
+chain.to(".Fantom-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },1.13)
+  
+chain.to(".Solana-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },1.7)
+  
+chain.to(".near-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },2.26)
+  
+chain.to(".Optimism-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },2.83)
+ 
+chain.to(".Arbitrum-logo", {
+  scale:0.5,
+   duration: 15,
+  ease:"none",
+     motionPath:{
+       path:".travel",
+       align: ".travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },3.4)
+
+let token = gsap.timeline({ paused:true, reversed:true });
+    ScrollTrigger.create({
+        animation: token,
+        trigger: ".section-3",
+        start: "center center",
+        end: "200% center",
+        scrub: 1,
+        markers:false,
+        pin:true,
+});   
+token.from("#spheron-token", {
+      scale:1,
+      duration: 5,
+      ease:"none",
+      motionPath:{
+        path:"#spheron-travel",
+        align: "#spheron-travel",
+        autoRotate: false,
+        alignOrigin: [0.5, 1],
+      },    
+     },0)
+  
+token.from("#btc-token", {
+  scale:1,
+  duration: 5,
+  ease:"none",
+     motionPath:{
+       path:"#btc-travel",
+       align: "#btc-travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },0)
+
+token.from("#eth-token", {
+  scale:1,
+  duration: 5,
+  ease:"none",
+     motionPath:{
+       path:"#eth-travel",
+       align: "#eth-travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },0)
+  
+token.from("#usdc-token", {
+  scale:1,
+  duration: 5,
+  ease:"none",
+     motionPath:{
+       path:"#usdc-travel",
+       align: "#usdc-travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },0)
+  
+token.from("#tether-token", {
+  scale:1,
+   duration: 5,
+  ease:"none",
+     motionPath:{
+       path:"#usdt-travel",
+       align: "#usdt-travel",
+       autoRotate: false,
+       alignOrigin: [0.5, 1]
+     },    
+    },0)
+
+token.to(".sec3-content", {
+  y:-50,
+  opacity:0,
+  duration:5,
+}, 5)
+ 
+token.to(".sec4-content", {
+  y:-220,
+  opacity:1,
+  duration:5,
+}, 5.2)
+  
+token.to(".sec3", {
+  scale:2,
+  y:-150,
+  duration:5,
+}, 5.2)
+
+token.to("#spheron-token", {
+  scale:0.5,
+  duration:5,
+}, 5.2)
+
+token.to("#btc-token", {
+  scale:0.5,
+  duration:5,
+}, 5.2)
+
+token.to("#eth-token", {
+  scale:0.5,
+  duration:5,
+}, 5.2)
+
+token.to("#usdc-token", {
+  scale:0.5,
+  duration:5,
+}, 5.2)
+
+token.to("#tether-token", {
+  scale:0.5,
+  duration:5,
+}, 5.2)
+
+token.to(".outer-rings", {
+  opacity:0,
+  duration:5,
+}, 5.2)
+
+token.to(".connector-lines", {
+  opacity:0,
+  duration:5,
+}, 5.2)
+
+token.to("#polygon-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 4.6)
+
+token.to("#fantom-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 4.7)
+
+token.to("#avalanche-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 4.8)
+
+token.to("#solana-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 4.9)
+
+token.to("#near-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 5.0)
+
+token.to("#optimism-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 5.1)
+
+token.to("#arbitrum-logo", {
+ y:-50,
+  opacity:0,
+  duration:5,
+}, 5.2)
+
+token.to("#upload-svg", {
+  opacity:1,
+  duration:5,
+}, 5.2)
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+<div>
+    <nav>
+        <div className="logo"><h3>LOGO</h3></div>
+        <div className="menu">
+            <ul>
+                <li>Features</li>
+                <li>Templates</li>
+                <li>Pricing</li>
+                <li>Blog</li>
+                <li>Docs</li>
+                <li>Contact</li>
+            </ul>
+            <a className="btn" href="#" target="_blank" rel="noopener noreferrer">Stake <span>(50% APY)</span> </a>
+            <a className="btn" href="#" target="_blank" rel="noopener noreferrer">Deploy Now </a>
         </div>
-      </main>
+    </nav>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+    <section className="container">
+
+        <div className="section-1">
+            <div className="hero-section">
+                <h1>Deploy And Host
+                    <span className="fancy-text">Your DAPPS</span></h1>
+                <p>Simplify onchain payment on multiple chains</p>
+                <div className="btn-group">
+                    <a className="btn" href="#" target="_blank" rel="noopener noreferrer">Stake <span>(50% APY)</span> </a>
+                    <a className="sec-btn btn" href="#" target="_blank" rel="noopener noreferrer">Deploy Now </a>
+                </div>
+            </div>
+            <div className="svg-container">
+                <TopSvg />
+            </div>
+        </div>
+        <div className="section-2">
+            <h2 className="sec-title">Select Any
+                <span className="fancy-text">Chain</span></h2>
+            <div className="flex-display">
+                <div className="left-section  w-50">
+                    <h3>Lorem ipsum dolor sit  consectetur<br/> ame <span className="fancy-text">$SPHERON</span></h3>
+                    <p className="para-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum, est id molestie condimentum, leo arcu egestas purus, vitae faucibus nisi ligula vitae dui. Nullam sit amet dolor pharetra augue volutpat tempor. Donec sit amet turpis nec lorem sodales finibus at a ipsum. </p>
+                    <div className="features">
+                        <ul className="feature-list">
+                            <li>
+                                <div className="icon-container">
+                                    <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M44.7985 36.9713H46.597V46.144C41.7409 46.144 37.6042 48.1224 34.3668 49.2015C31.1294 50.2807 28.4316 51.0001 26.8129 51.0001C25.1942 51.0001 23.0359 50.4605 20.3381 48.8418C17.6403 47.2231 5.23022 40.2087 3.61152 39.3095C1.99282 38.4102 1.81296 36.9713 2.35253 35.7123C2.8921 34.4533 4.5108 34.2735 5.58993 34.8131L7.38849 35.7123C7.56834 33.5541 9.72661 32.8346 11.3453 33.7339C12.6403 34.4533 18.9592 38.0034 21.9568 39.6885C22.0672 39.6116 22.1871 39.5447 22.3165 39.4893C23.5755 38.9497 24.8345 38.4102 26.633 37.8706C31.3093 36.4317 31.8488 33.3742 36.8848 33.3742C40.9136 33.3742 43.8392 35.7723 44.7985 36.9713Z" fill="#DEE9FF"/>
+                                        <path d="M20.518 18.2664C19.259 18.2664 17.6403 17.3671 17.6403 15.7484C17.6403 14.1297 19.259 3.51819 23.5755 3.51819C27.892 3.51819 29.151 13.9498 29.151 15.7484C29.151 17.5469 27.892 18.2664 26.633 18.2664H23.3956V31.0144C23.3992 31.0561 23.4025 31.0976 23.4055 31.1385C23.6816 27.4579 25.8017 21.903 32.928 20.7805C32.7019 20.134 32.5683 19.5237 32.5683 18.9858V14.6692C32.5683 14.1297 32.928 13.77 33.4676 13.4103C33.8992 13.1225 37.964 10.6525 39.9424 9.45343C41.9208 10.6525 45.9855 13.1225 46.4172 13.4103C46.9567 13.77 47.1366 14.3095 47.1366 14.6692V18.9858C47.1366 22.9426 42.9999 27.2591 41.7409 28.5181C40.4819 29.7771 39.0431 29.5973 37.964 28.5181C37.4309 27.9851 36.1079 26.3988 34.9054 24.5613C32.4586 31.18 26.2127 32.7148 23.3956 32.6548C21.717 32.8946 17.6043 32.475 14.5827 28.8778C11.5611 25.2807 11.2854 21.7436 11.5252 20.4246C13.2638 20.3647 17.4604 21.0002 20.3381 24.0217C22.484 26.2749 23.2297 29.0682 23.3956 31.0144V18.2664H20.518Z" fill="#DEE9FF"/>
+                                        <path d="M48.5755 31.7553C48.0958 31.7553 47.0287 31.7553 46.597 31.7553C46.0575 31.7553 45.5179 32.115 45.5179 32.8344C45.5179 32.9867 45.5179 33.5906 45.5179 34.4531M48.5755 45.784C47.916 45.784 46.5251 45.784 46.2373 45.784C45.8776 45.784 45.5179 45.4243 45.5179 44.8848C45.5179 44.7832 45.5179 44.3183 45.5179 43.6258M45.5179 34.4531H43.7193C42.7601 33.2541 39.8345 30.856 35.8057 30.856C30.7697 30.856 30.2302 33.9136 25.5539 35.3524C23.7554 35.892 22.4964 36.4315 21.2374 36.9711C21.108 37.0266 20.9881 37.0934 20.8777 37.1703M45.5179 34.4531C45.5179 36.8973 45.5179 41.4183 45.5179 43.6258M33.1079 38.7697C30.5899 39.609 25.2302 41.3956 23.9352 41.8272C22.6939 42.241 21.4525 42.1259 20.6978 41.4008M20.8777 37.1703C19.914 37.8415 19.6741 39.2773 20.1583 40.5682C20.284 40.9036 20.4684 41.1804 20.6978 41.4008M20.8777 37.1703C17.8801 35.4852 11.5612 31.9351 10.2662 31.2157C8.64751 30.3164 6.48924 31.0359 6.30939 33.1941M6.30939 33.1941L20.6978 41.4008M6.30939 33.1941C6.06958 33.0742 5.37414 32.7265 4.51083 32.2949C3.4317 31.7553 1.81299 31.9351 1.27343 33.1941C0.73386 34.4532 0.913716 35.892 2.53242 36.7913C4.15112 37.6906 16.5612 44.7049 19.259 46.3236C21.9568 47.9423 24.1151 48.4819 25.7338 48.4819C27.3525 48.4819 30.0503 47.7625 33.2877 46.6833C36.5251 45.6042 40.6618 43.6258 45.5179 43.6258M22.3165 33.7337V30.1366M22.3165 15.7482C22.976 15.7482 24.5468 15.7482 25.5539 15.7482C26.8129 15.7482 28.0719 15.0287 28.0719 13.2302C28.0719 11.4316 26.8129 1 22.4964 1C18.1799 1 16.5612 11.6115 16.5612 13.2302C16.5612 14.8489 18.1799 15.7482 19.4388 15.7482H22.3165ZM22.3165 15.7482V30.1366M22.3165 30.1366L10.4461 17.9064M22.3165 30.1366C22.4964 28.5179 22.1367 24.5251 19.259 21.5035C16.3813 18.482 12.1847 17.8465 10.4461 17.9064M22.3165 30.1366C20.6379 30.3764 16.5252 29.9568 13.5036 26.3597C10.482 22.7625 10.2063 19.2254 10.4461 17.9064M22.3165 30.1366L32.6518 20.0647M22.3165 30.1366C22.0767 26.7168 23.6475 19.5542 31.8489 18.2623M22.3165 30.1366C25.1336 30.1966 31.3795 28.6618 33.8263 22.0431M35.6259 15.7482L38.3237 20.2446L43.1798 12.3309M32.6518 20.0647C32.3294 19.4523 32.0519 18.8427 31.8489 18.2623M32.6518 20.0647C33.003 20.732 33.4073 21.4028 33.8263 22.0431M31.8489 18.2623C31.6228 17.6159 31.4892 17.0055 31.4892 16.4676C31.4892 13.41 31.4892 12.6906 31.4892 12.1511C31.4892 11.6115 31.8489 11.2518 32.3885 10.8921C32.8201 10.6043 36.8848 8.13428 38.8633 6.93524C40.8417 8.13428 44.9064 10.6043 45.3381 10.8921C45.8776 11.2518 46.0575 11.7913 46.0575 12.1511C46.0575 12.5108 46.0575 14.3093 46.0575 16.4676C46.0575 20.4244 41.9208 24.7409 40.6618 25.9999C39.4028 27.2589 37.964 27.0791 36.8848 25.9999C36.3518 25.4669 35.0288 23.8806 33.8263 22.0431" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>Yield Farming</h3>
+                            </li>
+                            <li>
+                                <div className="icon-container">
+                                    <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M44.7985 36.9721H46.597V46.1448C41.7409 46.1448 37.6042 48.1232 34.3668 49.2023C31.1294 50.2815 28.4316 51.0009 26.8129 51.0009C25.1942 51.0009 23.0359 50.4613 20.3381 48.8426C17.6403 47.2239 5.23022 40.2096 3.61152 39.3103C1.99282 38.411 1.81296 36.9722 2.35253 35.7131C2.8921 34.4541 4.5108 34.2743 5.58993 34.8139L7.38849 35.7131C7.56834 33.5549 9.72661 32.8354 11.3453 33.7347C12.6403 34.4541 18.9592 38.0042 21.9568 39.6893C22.0672 39.6124 22.1871 39.5456 22.3165 39.4901C23.5755 38.9505 24.8345 38.411 26.633 37.8714C31.3093 36.4326 31.8488 33.375 36.8848 33.375C40.9136 33.375 43.8392 35.7731 44.7985 36.9721Z" fill="#DEE9FF"/>
+                                        <path d="M48.5755 31.7561C48.0958 31.7561 47.0287 31.7561 46.597 31.7561C46.0575 31.7561 45.5179 32.1158 45.5179 32.8352C45.5179 32.9876 45.5179 33.5914 45.5179 34.4539M48.5755 45.7848C47.916 45.7848 46.5251 45.7848 46.2373 45.7848C45.8776 45.7848 45.5179 45.4251 45.5179 44.8856C45.5179 44.784 45.5179 44.3192 45.5179 43.6266M45.5179 34.4539H43.7193C42.7601 33.2549 39.8345 30.8568 35.8057 30.8568C30.7697 30.8568 30.2302 33.9144 25.5539 35.3532C23.7554 35.8928 22.4964 36.4324 21.2374 36.9719C21.108 37.0274 20.9881 37.0942 20.8777 37.1711M45.5179 34.4539C45.5179 36.8981 45.5179 41.4191 45.5179 43.6266M33.1079 38.7705C30.5899 39.6098 25.2302 41.3964 23.9352 41.828C22.6939 42.2418 21.4525 42.1267 20.6978 41.4016M20.8777 37.1711C19.914 37.8423 19.6741 39.2781 20.1583 40.569C20.284 40.9044 20.4684 41.1812 20.6978 41.4016M20.8777 37.1711C17.8801 35.486 11.5612 31.936 10.2662 31.2165C8.64751 30.3173 6.48924 31.0367 6.30939 33.1949M6.30939 33.1949L20.6978 41.4016M6.30939 33.1949C6.06958 33.0751 5.37414 32.7274 4.51083 32.2957C3.4317 31.7561 1.81299 31.9359 1.27343 33.1949C0.73386 34.454 0.913716 35.8928 2.53242 36.7921C4.15112 37.6914 16.5612 44.7057 19.259 46.3244C21.9568 47.9431 24.1151 48.4827 25.7338 48.4827C27.3525 48.4827 30.0503 47.7633 33.2877 46.6842C36.5251 45.605 40.6618 43.6266 45.5179 43.6266" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M13 15.7309C13 8.83773 18.1598 3 25.4501 3C32.4075 3 38 8.87071 38 15.7309C38 22.591 32.1411 28 25.4501 28C18.759 28 13 22.624 13 15.7309Z" fill="#DEE9FF"/>
+                                        <path d="M25.2503 6.99077V8.96966M25.2503 24.1412V21.8654M29.1119 12.1359C28.9898 11.0805 28.0466 8.96966 25.2503 8.96966M25.2503 8.96966C22.9534 8.96966 21.6884 10.4208 21.6884 12.1359C21.6884 13.8509 23.6192 14.8074 25.2503 15.0053M25.2503 8.96966V15.0053M25.2503 15.0053C27.3808 15.3021 29.5446 16.2916 29.5446 18.6003C29.5446 20.909 27.2477 21.8654 25.2503 21.8654M25.2503 15.0053V21.8654M25.2503 21.8654C22.7204 21.8654 21.4221 20.1834 21.4221 18.6003M25.4501 3C18.1598 3 13 8.83773 13 15.7309C13 22.624 18.759 28 25.4501 28C32.1411 28 38 22.591 38 15.7309C38 8.87071 32.4075 3 25.4501 3Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M24.2503 4.99077V6.96966M24.2503 22.1412V19.8654M28.1119 10.1359C27.9898 9.08047 27.0466 6.96966 24.2503 6.96966M24.2503 6.96966C21.9534 6.96966 20.6884 8.42084 20.6884 10.1359C20.6884 11.8509 22.6192 12.8074 24.2503 13.0053M24.2503 6.96966V13.0053M24.2503 13.0053C26.3808 13.3021 28.5446 14.2916 28.5446 16.6003C28.5446 18.909 26.2477 19.8654 24.2503 19.8654M24.2503 13.0053V19.8654M24.2503 19.8654C21.7204 19.8654 20.4221 18.1834 20.4221 16.6003M24.4501 1C17.1598 1 12 6.83773 12 13.7309C12 20.624 17.759 26 24.4501 26C31.1411 26 37 20.591 37 13.7309C37 6.87071 31.4075 1 24.4501 1Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>Unified Currency</h3>
+                            </li>
+                            <li>
+                                <div className="icon-container">
+                                    <svg width="49" height="51" viewBox="0 0 49 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M46.4893 21.2997C47.841 21.2997 48.179 21.2322 48.179 19.6101C48.179 19.3501 48.1877 19.1266 48.1953 18.9303C48.2352 17.9022 48.2461 17.6228 46.8273 16.7715C45.9595 16.2508 41.0272 13.1096 36.2785 10.0854C31.781 7.22105 27.4483 4.46166 26.8894 4.13291L26.7654 4.05975C25.6755 3.41543 24.7957 2.89533 23.037 4.13291C22.0311 4.84078 16.5274 8.4855 11.598 11.75C7.58507 14.4075 3.95265 16.813 3.43705 17.177L3.28739 17.2824C2.80906 17.6187 2.55969 17.794 2.42968 18.034C2.28809 18.2954 2.28809 18.6335 2.28809 19.3398L2.28794 19.4817C2.28576 20.7952 2.28492 21.2997 4.11291 21.2997H7.62735C7.06413 21.863 6.14045 23.2327 6.95149 24.2059C7.31545 24.6427 7.63586 24.7659 7.89707 24.8663C8.36345 25.0455 8.64114 25.1522 8.64114 26.8418V41.8459H7.1543C6.14051 41.8459 5.53224 42.319 5.53224 43.0624V46.4417H3.9777C2.89627 46.4417 2.22047 46.7797 2.22047 47.5907C2.22047 47.8749 2.21217 48.0429 2.2043 48.2023C2.1897 48.4978 2.17656 48.7639 2.22047 49.6859C2.28233 50.985 2.62733 50.9817 3.67012 50.9719C3.76657 50.971 3.86899 50.97 3.9777 50.97C4.15483 50.97 5.0675 50.9713 6.5135 50.9733L6.53951 50.9734H6.54382C15.6172 50.9862 45.4211 51.0282 46.7596 50.97C48.1957 50.9076 48.132 49.8068 48.0607 48.5737C48.0548 48.4721 48.0489 48.3695 48.0438 48.2666C48.0369 48.1293 48.0321 48.0011 48.0277 47.8815C47.9883 46.8236 47.9741 46.4417 46.7596 46.4417H44.3941V43.13C44.3941 41.9135 43.8534 41.8459 43.11 41.8459H41.5555V26.8418C41.5555 25.3329 41.9099 25.2193 42.3016 25.0937C42.5942 24.9999 42.9077 24.8995 43.11 24.2059C43.5831 22.5839 43.1776 21.8404 41.961 21.2997H46.4893ZM24.7942 8.12048L38.3114 16.7715H11.8177L24.7942 8.12048ZM13.8453 26.8418V41.8459H22.4287V26.8418C22.4287 25.4833 22.1548 25.389 21.7599 25.253C21.4475 25.1455 21.0595 25.0119 20.6714 24.2059C19.9685 22.7461 20.9643 21.6602 21.5501 21.2997H14.5211C15.6701 21.8404 16.2784 23.057 15.5349 24.2059C15.2643 24.6242 14.9668 24.7827 14.6979 24.926C14.228 25.1764 13.8453 25.3804 13.8453 26.8418ZM27.5652 41.8459V26.8418C27.5652 25.2946 27.8214 25.2145 28.238 25.0841C28.5311 24.9924 28.9037 24.8759 29.3224 24.2059C30.3362 22.5839 28.9169 21.2997 28.2411 21.2997H35.0673C34.6167 21.7053 33.8642 22.8542 34.459 24.2059C34.7851 24.947 35.1891 25.103 35.5401 25.2385C35.9893 25.4119 36.3514 25.5518 36.3514 26.8418V41.8459H27.5652Z" fill="#DEE9FF"/>
+                                        <circle cx="25.1322" cy="46.4416" r="1.01379" fill="#DEE9FF"/>
+                                        <path d="M6.43692 18.9188C4.64372 18.9188 3.34322 18.9188 2.92248 18.9188C1.03007 18.9188 1.09766 18.3781 1.09766 16.9588C1.09766 15.5395 1.09766 15.6071 2.24662 14.796C3.39558 13.985 20.0217 3.03606 21.8466 1.75192C23.6714 0.46779 24.55 1.07606 25.699 1.75192C26.8479 2.42778 43.9472 13.3767 45.6368 14.3905C47.3265 15.4043 46.9885 15.607 46.9885 17.2291C46.9885 18.8512 46.6506 18.9188 45.2989 18.9188C44.8941 18.9188 43.1379 18.9188 40.7706 18.9188M6.43692 18.9188C5.8737 19.482 4.95002 20.8517 5.76106 21.825C6.77485 23.0415 7.45071 21.825 7.45071 24.4608C7.45071 26.5695 7.45071 35.3422 7.45071 39.4649M6.43692 18.9188C8.33561 18.9188 10.7867 18.9188 13.3307 18.9188M7.45071 39.4649H12.6548M7.45071 39.4649C7.29302 39.4649 6.7749 39.4649 5.96387 39.4649C4.95008 39.4649 4.34181 39.938 4.34181 40.6814C4.34181 41.2762 4.34181 43.1821 4.34181 44.0607M12.6548 39.4649C12.6548 35.2295 12.6548 26.2992 12.6548 24.4608C12.6548 22.1629 13.601 22.9739 14.3445 21.825C15.0879 20.676 14.4796 19.4594 13.3307 18.9188M12.6548 39.4649H21.2382M13.3307 18.9188C15.7185 18.9188 18.1881 18.9188 20.3596 18.9188M20.3596 18.9188C21.5518 18.9188 22.6541 18.9188 23.6038 18.9188C24.3567 18.9188 25.5707 18.9188 27.0506 18.9188M20.3596 18.9188C19.7739 19.2792 18.7781 20.3651 19.481 21.825C20.3596 23.6498 21.2382 22.0277 21.2382 24.4608C21.2382 26.4073 21.2382 35.2746 21.2382 39.4649M21.2382 39.4649H26.3748M26.3748 39.4649C26.3748 35.3422 26.3748 26.5695 26.3748 24.4608C26.3748 21.825 27.1182 23.447 28.132 21.825C29.1458 20.2029 27.7265 18.9188 27.0506 18.9188M26.3748 39.4649H35.161M27.0506 18.9188C29.0109 18.9188 31.4376 18.9188 33.8768 18.9188M35.161 39.4649C35.161 35.2295 35.161 26.2992 35.161 24.4608C35.161 22.1629 34.012 23.5146 33.2685 21.825C32.6738 20.4732 33.4262 19.3243 33.8768 18.9188M35.161 39.4649H40.3651M33.8768 18.9188C36.3131 18.9188 38.7618 18.9188 40.7706 18.9188M40.3651 39.4649C40.3651 35.3422 40.3651 26.5695 40.3651 24.4608C40.3651 21.825 41.4465 23.447 41.9196 21.825C42.3927 20.2029 41.9871 19.4594 40.7706 18.9188M40.3651 39.4649C40.6354 39.4649 41.3248 39.4649 41.9196 39.4649C42.663 39.4649 43.2037 39.5325 43.2037 40.749C43.2037 41.7223 43.2037 43.3624 43.2037 44.0607M43.2037 44.0607H27.8617M43.2037 44.0607C43.5416 44.0607 44.4878 44.0607 45.5692 44.0607C46.9209 44.0607 46.7857 44.5338 46.8533 45.8856C46.9209 47.2373 47.1237 48.5214 45.5692 48.589C44.0147 48.6566 4.07141 48.589 2.78727 48.589C1.50314 48.589 1.09762 48.7242 1.03004 47.3049C0.962452 45.8856 1.03004 46.0207 1.03004 45.2097C1.03004 44.3987 1.70584 44.0607 2.78727 44.0607C2.95734 44.0607 3.51498 44.0607 4.34181 44.0607M19.8866 44.0607C15.5969 44.0607 7.7211 44.0607 4.34181 44.0607M37.121 14.3905L23.6038 5.7395L10.6273 14.3905H37.121Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <circle cx="23.9418" cy="44.0607" r="1.01379" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>Governance</h3>
+                            </li>
+                            <li>
+                                <div className="icon-container">
+                                    <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M44.7985 36.9721H46.597V46.1448C41.7409 46.1448 37.6042 48.1232 34.3668 49.2023C31.1294 50.2815 28.4316 51.0009 26.8129 51.0009C25.1942 51.0009 23.0359 50.4613 20.3381 48.8426C17.6403 47.2239 5.23022 40.2096 3.61152 39.3103C1.99282 38.411 1.81296 36.9722 2.35253 35.7131C2.8921 34.4541 4.5108 34.2743 5.58993 34.8139L7.38849 35.7131C7.56834 33.5549 9.72661 32.8354 11.3453 33.7347C12.6403 34.4541 18.9592 38.0042 21.9568 39.6893C22.0672 39.6124 22.1871 39.5456 22.3165 39.4901C23.5755 38.9505 24.8345 38.411 26.633 37.8714C31.3093 36.4326 31.8488 33.375 36.8848 33.375C40.9136 33.375 43.8392 35.7731 44.7985 36.9721Z" fill="#DEE9FF"/>
+                                        <path d="M48.5755 31.7561C48.0958 31.7561 47.0287 31.7561 46.597 31.7561C46.0575 31.7561 45.5179 32.1158 45.5179 32.8352C45.5179 32.9876 45.5179 33.5914 45.5179 34.4539M48.5755 45.7848C47.916 45.7848 46.5251 45.7848 46.2373 45.7848C45.8776 45.7848 45.5179 45.4251 45.5179 44.8856C45.5179 44.784 45.5179 44.3192 45.5179 43.6266M45.5179 34.4539H43.7193C42.7601 33.2549 39.8345 30.8568 35.8057 30.8568C30.7697 30.8568 30.2302 33.9144 25.5539 35.3532C23.7554 35.8928 22.4964 36.4324 21.2374 36.9719C21.108 37.0274 20.9881 37.0942 20.8777 37.1711M45.5179 34.4539C45.5179 36.8981 45.5179 41.4191 45.5179 43.6266M33.1079 38.7705C30.5899 39.6098 25.2302 41.3964 23.9352 41.828C22.6939 42.2418 21.4525 42.1267 20.6978 41.4016M20.8777 37.1711C19.914 37.8423 19.6741 39.2781 20.1583 40.569C20.284 40.9044 20.4684 41.1812 20.6978 41.4016M20.8777 37.1711C17.8801 35.486 11.5612 31.936 10.2662 31.2165C8.64751 30.3173 6.48924 31.0367 6.30939 33.1949M6.30939 33.1949L20.6978 41.4016M6.30939 33.1949C6.06958 33.0751 5.37414 32.7274 4.51083 32.2957C3.4317 31.7561 1.81299 31.9359 1.27343 33.1949C0.73386 34.454 0.913716 35.8928 2.53242 36.7921C4.15112 37.6914 16.5612 44.7057 19.259 46.3244C21.9568 47.9431 24.1151 48.4827 25.7338 48.4827C27.3525 48.4827 30.0503 47.7633 33.2877 46.6842C36.5251 45.605 40.6618 43.6266 45.5179 43.6266" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M13 15.7309C13 8.83773 18.1598 3 25.4501 3C32.4075 3 38 8.87071 38 15.7309C38 22.591 32.1411 28 25.4501 28C18.759 28 13 22.624 13 15.7309Z" fill="#DEE9FF"/>
+                                        <path d="M25.2503 6.99077V8.96966M25.2503 24.1412V21.8654M29.1119 12.1359C28.9898 11.0805 28.0466 8.96966 25.2503 8.96966M25.2503 8.96966C22.9534 8.96966 21.6884 10.4208 21.6884 12.1359C21.6884 13.8509 23.6192 14.8074 25.2503 15.0053M25.2503 8.96966V15.0053M25.2503 15.0053C27.3808 15.3021 29.5446 16.2916 29.5446 18.6003C29.5446 20.909 27.2477 21.8654 25.2503 21.8654M25.2503 15.0053V21.8654M25.2503 21.8654C22.7204 21.8654 21.4221 20.1834 21.4221 18.6003M25.4501 3C18.1598 3 13 8.83773 13 15.7309C13 22.624 18.759 28 25.4501 28C32.1411 28 38 22.591 38 15.7309C38 8.87071 32.4075 3 25.4501 3Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M24.2503 4.99077V6.96966M24.2503 22.1412V19.8654M28.1119 10.1359C27.9898 9.08047 27.0466 6.96966 24.2503 6.96966M24.2503 6.96966C21.9534 6.96966 20.6884 8.42084 20.6884 10.1359C20.6884 11.8509 22.6192 12.8074 24.2503 13.0053M24.2503 6.96966V13.0053M24.2503 13.0053C26.3808 13.3021 28.5446 14.2916 28.5446 16.6003C28.5446 18.909 26.2477 19.8654 24.2503 19.8654M24.2503 13.0053V19.8654M24.2503 19.8654C21.7204 19.8654 20.4221 18.1834 20.4221 16.6003M24.4501 1C17.1598 1 12 6.83773 12 13.7309C12 20.624 17.759 26 24.4501 26C31.1411 26 37 20.591 37 13.7309C37 6.87071 31.4075 1 24.4501 1Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>Yield Farming</h3></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div className="illu-section w-50">
+                    <MiddleSvg />
+                </div>
+            </div>
+        </div>
+        <div className="section-3">
+            <div className="sec3-content">
+                <h2 className="sec-title">Select Any
+                    <span className="fancy-text">Token</span></h2>
+                <p className="font-center w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum, est id molestie condimentum, leo arcu egestas purus, vitae faucibus nisi ligula vitae dui. Nullam sit amet dolor pharetra augue volutpat tempor.</p>
+            </div>
+
+            <div className="sec4-content">
+                <h2 className="sec-title">Choose your
+                    <span className="fancy-text">Framework And Upload</span></h2>
+                <p className="font-center w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum, est id molestie condimentum, leo arcu egestas purus, vitae faucibus nisi ligula vitae dui. Nullam sit amet dolor pharetra augue volutpat tempor.</p>
+            </div>
+            <div className="sec3 illu-section">
+                <NextSvgs />
+            </div>
+            <div className="sec3 illu-section">
+
+            </div>
+        </div>
+    </section>
     </div>
-  )
+  );
 }
 
 export default Home
